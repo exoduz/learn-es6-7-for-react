@@ -265,6 +265,7 @@ render() {
 }
 ```
 
+<a id="section-3"></a>
 ## Section 3 - Template Strings. Default Parameters. Concise Objects. ##
 
 <a id="section-3-1"></a>
