@@ -3,6 +3,7 @@
 
 ### Contents ###
 1. [Babel. const. let. Modules. Destructuring.](#section-1)
+	1-1 [New Variable Declarations with let and const](#section-1-1)
 2. [Concise Object Methods. Arrow Functions.](#section-2)
 3. [Template Strings. Default Parameters. Concise Objects.](#section-3)
 4. [Async/Await](#section-4)
@@ -11,6 +12,7 @@
 <a id="section-1"></a>
 ## Section 1 - Babel. const. let. Modules. Destructuring. ##
 
+<a id="section-1-1"></a>
 ### New Variable Declarations with let and const ###
 
 Javascript is **function scoped**. Only functions introduce new scopes.
