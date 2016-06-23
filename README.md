@@ -4,6 +4,9 @@
 ### Contents ###
 1. [Babel. const. let. Modules. Destructuring.](#section-1)
 2. [Concise Object Methods. Arrow Functions.](#section-2)
+3. [Template Strings. Default Parameters. Concise Objects.](#section-3)
+4. [Async/Await](#section-4)
+5. [Classes](#section-5)
 
 <a id="section-1"></a>
 ## Section 1 - Babel. const. let. Modules. Destructuring. ##
@@ -305,6 +308,7 @@ function getUser(username) {
 }
 ```
 
+<a id="section-4"></a>
 ## Section 4 - Async/Await ##
 
 Writing asynchronous code that appears to be synchronous.
@@ -348,6 +352,7 @@ async function handleGetUser() {
 }
 ```
 
+<a id="section-5"></a>
 ## Section 5 - Classes ##
 
 ```jsx
