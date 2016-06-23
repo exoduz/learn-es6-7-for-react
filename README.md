@@ -4,8 +4,15 @@
 ### Contents ###
 1. [Babel. const. let. Modules. Destructuring.](#section-1)
 	1. [New Variable Declarations with let and const](#section-1-1)
+	2. [`import` and `export` with ES6 Modules](#section-1-2)
+	3. [Object Destructuring](#section-1-3)
 2. [Concise Object Methods. Arrow Functions.](#section-2)
+ 	1. [Concise Object Methods](#section-2-1)
+ 	2. [Arrow Functions](#section-2-2)
 3. [Template Strings. Default Parameters. Concise Objects.](#section-3)
+	1. [Template Strings (AKA Template Literals)](#section-3-1)
+	2. [Default Parameters](#section-3-2)
+	3. [Concise Objects](#section-3-3)
 4. [Async/Await](#section-4)
 5. [Classes](#section-5)
 
@@ -71,6 +78,7 @@ user = {
 } //will throw a "User is already defined" error, trying to re-assign actual reference
 ```
 
+<a id="section-1-3"></a>
 ### `import` and `export` with ES6 Modules ###
 
 ```javascript
@@ -117,6 +125,7 @@ doAllTheMath(1, 2, 3); //4
 add(1, 2); //3
 ```
 
+<a id="section-1-3"></a>
 ### Object Destructuring ###
 
 Convenient way to extract values from data stored in objects and arrays.
@@ -158,6 +167,7 @@ var { Route, Link, Router } = require('react-router');
 <a id="section-2"></a>
 ## Section 2 - Concise Object Methods. Arrow Functions. ##
 
+<a id="section-2-1"></a>
 ### Concise Object Methods ###
 
 **Concise Object Methods** allows you to drop the `: function` part of a method.
@@ -194,6 +204,7 @@ var Register = React.createClass({
 })
 ```
 
+<a id="section-2-2"></a>
 ### Arrow Functions ###
 
 Why were **Arrow Functions** added to the spec?  
@@ -256,6 +267,7 @@ render() {
 
 ## Section 3 - Template Strings. Default Parameters. Concise Objects. ##
 
+<a id="section-3-1"></a>
 ### Template Strings (AKA Template Literals) ###
 
 Replacement for string concatenation without the `+`.  
@@ -273,6 +285,7 @@ var thing = `this is a multi
 `
 ```
 
+<a id="section-3-2"></a>
 ### Default Parameters ###
 
 Setting inital/default parameters if those arguments aren't specified.
@@ -289,6 +302,7 @@ function debounce(func, wait, immediate) {
 function debounce (func, wait = 1000, immediate) { ... }
 ```
 
+<a id="section-3-3"></a>
 ### Concise Objects ###
 
 ```javascript
