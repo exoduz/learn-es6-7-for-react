@@ -58,7 +58,7 @@ user.name = 'Joey'; //valid because it's just re-assigning a specific value
 user = {
 	name: 'Joey',
 	age: 28
-} //will thros a "User is already defined" error, trying to re-assign actual reference
+} //will throw a "User is already defined" error, trying to re-assign actual reference
 ```
 
 ### `import` and `export` with ES6 Modules ###
@@ -111,7 +111,7 @@ add(1, 2); //3
 
 Convenient way to extract values from data stored in objects and arrays.
 
-```javascript
+```jsx
 function register(props) {
 	//ugly!
 	var onChangeEmail = props.onChangeEmail;
@@ -134,7 +134,7 @@ function register(props) {
 
 Another great example is **named imports**
 
-```javascript
+```jsx
 //ugly!
 var ReactRouter = require('react-router');
 var Route = ReactRouter.Route;
@@ -242,3 +242,168 @@ render() {
 	)
 }
 ```
+
+## Section 3 - Template Strings. Default Parameters. Concise Objects. ##
+
+### Template Strings (AKA Template Literals) ###
+
+Replacement for string concatenation without the `+`.  
+Wrap the line in back ticks (\`), not quotations ('), each variable is wrapped in `${}`. Also supports multi-line strings.
+
+```javascript
+'Hello, ' + name + '. We\'ve emailed you at ' + email '. Your user id is ' + id + '.'; //old
+`Hello, ${name}. We've emailed you at ${email}. Your user id is ${id}.` //using template strings
+
+//also supports multi-line
+var thing = `this is a multi
+	line
+	update and it is 
+	valid.
+`
+```
+
+### Default Parameters ###
+
+Setting inital/default parameters if those arguments aren't specified.
+
+```javascript
+//without default parameters
+function debounce(func, wait, immediate) {
+	if (typeof wait === 'undefined') {
+		wait = 1000
+	}
+}
+
+//with default parameters
+function debounce (func, wait = 1000, immediate) { ... }
+```
+
+### Concise Objects ###
+
+```javascript
+function getUser(username) {
+	const email = getEmail(username);
+	
+	//without concise objects, mirroring occurs
+	//username: username, email: email...
+	return {
+		username: username,
+		email: email
+	}
+	
+	//with concise objects
+	return {
+		username,
+		email
+	}
+}
+```
+
+## Section 4 - Async/Await ##
+
+Writing asynchronous code that appears to be synchronous.
+
+**Every async function you write will return a promise, and every single thing you await will ordinarily be a promise**
+
+Promises allow to pass a function to `.then` and that function will be called when our promise resolves (when the user object is ready).
+
+```javascript
+function get User() {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => resolve({ name: 'Tyler' }), 2000); //run after 2 seconds
+	})
+}
+
+function handleGetUser() {
+	getUser()
+	.then((user) => {
+		console.log('The user is: ', user);
+	})
+	.catch((error) => {
+		console.warn('Oh no there was an error: ', error);
+	})
+}
+
+//will not work because results DNE
+function handleGetUser() {
+	var user = getUser();
+	console.log(user);
+}
+
+//works
+//remember "if I want to use await, I need to make sure that the function I'm in is an async function"
+async function handleGetUser() {
+	try {
+		var user = await getUser() //await tells compiler to pause execution until the promise resolves
+		console.log(user)
+	} catch (error) {
+		console.log('Error in handleGetUser', error)
+	}
+}
+```
+
+## Section 5 - Classes ##
+
+```jsx
+var TodoApp = React.createClass({
+	propTypes: {
+		title: PropTypes.string.isRequired
+	},
+	getInitialState() {
+		return {
+			items: []
+		};
+	},
+  	updateItems(newItem) {
+		var allItems = this.state.items.concat([newItem]);
+		this.setState({items: allItems});
+	},
+	render() {
+		return (
+			<div>
+				<TodoBanner title={this.props.title}/>
+				<TodoList items={this.state.items}/>
+				<TodoForm onFormSubmit={this.updateItems}/>
+			</div>
+		);
+	}
+});
+```
+
+In ES6
+
+```jsx
+class TodoApp extends React.Component {
+	constructor() {
+		super()
+		this.state = {
+			items: []
+		}
+	}
+	updateItems(newItem) {
+		var allItems = this.state.items.concat([newItem]);
+		this.setState({items: allItems});
+	}
+	render() {
+		return (
+			<div>
+				<TodoBanner title={this.props.title}/>
+				<TodoList items={this.state.items}/>
+				<TodoForm onFormSubmit={() => this.updateItems()}/>
+			</div>
+    );
+  }
+}
+
+TodoApp.propTypes = {
+	title: PropTypes.string.isRequired
+}
+```
+
+#### Differences ####
+
+1. Obviously we're no longer using createClass. Instead, we're creating a class that extends React.Component.
+2. Classes have constructor functions which initialize the object which is being returned from the class. This essentially replaces our need to getInitialState since we can set a state instance on the component itself during the constructor phase. Also note before you set anything to the instance you need to call super() which calls the constructor function of the thing we're extending, in this case React.component.
+3. We no longer have commas between our properties since we're not in an object anymore.
+4. PropTypes are moved out of the class and added afterwards, just like we're used to doing with Stateless Functional Components.
+5. When we use createClass, the 'this' keyword is autobound for us. Meaning, we don't have to worry about which context the function using 'this' will be called in since it will always be bound to the original context. This isn't the case for classes. We can use .bind to fix this problem when we're passing in a function to another component (context) or we can use our handy dandy arrow functions as we did passing updateItems to onFormSubmit.
