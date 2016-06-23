@@ -1,6 +1,9 @@
 # Learn ES6/7 for React.js #
 ##### http://courses.reactjsprogram.com/courses/es6forreact #####
 
+### Contents ###
+2. [Section 2 - Concise Object Methods. Arrow Functions.](#section-2)
+
 ## Section 1 - Babel. const. let. Modules. Destructuring. ##
 
 ### New Variable Declarations with let and const ###
@@ -145,7 +148,7 @@ var Router = ReactRouter.Router;
 var { Route, Link, Router } = require('react-router');
 ```
 
-## Section 2 - Concise Object Methods. Arrow Functions. ##
+## Section 2 - Concise Object Methods. Arrow Functions. <a id="section-2"></a>##
 
 ### Concise Object Methods ###
 
