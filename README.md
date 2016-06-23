@@ -148,3 +148,97 @@ var { Route, Link, Router } = require('react-router');
 ## Section 2 - Concise Object Methods. Arrow Functions. ##
 
 ### Concise Object Methods ###
+
+**Concise Object Methods** allows you to drop the `: function` part of a method.
+
+```javascript
+var actions = {
+	sayName: function() { ... },
+	takeStep: function() { ... }
+}
+
+//above can be written as...
+var actions = {
+	sayName() { ... },
+	takeStep() { ... }
+}
+```
+
+With `React` code
+
+```jsx
+var Register = React.createClass({
+	getDefaultProps: function() { ... }.
+	componentDidMount: function() { ... },
+	shouldComponentUpdate: function() { ... },
+	render: function() { ... },
+})
+
+//above can be written as
+var Register = React.createClass({
+	getDefaultProps() { ... }.
+	componentDidMount() { ... },
+	shouldComponentUpdate() { ... },
+	render() { ... },
+})
+```
+
+### Arrow Functions ###
+
+Why were **Arrow Functions** added to the spec?  
+More concise syntax and sharing lexical `this` with the parent scope.
+
+```jsx
+var FriendsList = React.createClass({
+	getInitialState() {
+		return {
+			friends: [
+				{ id: 0, name: 'Mikenzi' },
+				{ id: 1, name: 'Ryan' },
+				{ id: 2, name: 'Jake' }
+			]
+		}
+	},
+	onAddFriend(friend) {
+		this.setState({
+			friends: this.state.friends.concat([friend])
+		})
+	},
+	render() {
+		return (
+			<ul>
+				{this.state.friends.map(function (friend) {
+					return <FriendItem key={ friend.id } handleAddFriend={ this.onAddFriend }>{ friend.name }</FriendItem>
+          	})} />
+          </ul>
+		)
+	}
+});
+```
+
+`this` is not in the context of `onAddFriend` method. One fix is to `bind(this)` to the end of the `map` invocation. More elegant solution is to use the **arrow function**.
+
+```jsx
+render() {
+	return (
+		<ul>
+			{this.state.friends.map((friend) => {
+				return <FriendItem key={ friend.id } handleAddFriend={ this.onAddFriend }>{ friend.name }></FriendItem>
+			})}
+		</ul>
+	)
+}
+```
+
+If you have everything on one line, the **arrow function** will implicitly return whatever is on that line, without the need of a `return` statement.
+
+```jsx
+//above code rewritten with one line
+render() {
+	return (
+		<ul>
+			{ this.state.friends.map((friend) => <FriendItem key={ friend.id } handleAddFriend={ this.onAddFriend }>{ friend.name }</FriendItem>)}
+		</ul>
+	)
+}
+```
