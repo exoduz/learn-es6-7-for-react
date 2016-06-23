@@ -148,7 +148,7 @@ var Router = ReactRouter.Router;
 var { Route, Link, Router } = require('react-router');
 ```
 
-<a name="section-2"></a>
+<a id="section-2"></a>
 ## Section 2 - Concise Object Methods. Arrow Functions. ##
 
 ### Concise Object Methods ###
