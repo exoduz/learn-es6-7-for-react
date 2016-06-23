@@ -78,7 +78,7 @@ user = {
 } //will throw a "User is already defined" error, trying to re-assign actual reference
 ```
 
-<a id="section-1-3"></a>
+<a id="section-1-2"></a>
 ### `import` and `export` with ES6 Modules ###
 
 ```javascript
