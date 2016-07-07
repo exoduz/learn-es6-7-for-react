@@ -52,7 +52,7 @@ doThing();
 ```javascript
 function doThing() {
 	var num = 1;
-	if (num >= - {
+	if (num >= 0) {
 		let secondNum = 2;
 		console.log(num); // 1
 		console.log(secondNum); // 2
